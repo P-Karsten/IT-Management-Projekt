@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@vidstack/react": "^1.11.21",
+    "typescript": "^5.4.5"
+  }
+}
