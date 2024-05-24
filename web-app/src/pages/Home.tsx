@@ -4,24 +4,23 @@ import VideoLoader from "../components/video/VideoLoader";
 import Keycloak from "keycloak-js";
 
 
+const kc = new Keycloak ({
+    url: 'http://localhost:8080',
+    realm: 'master',
+    clientId: 'real-client',
+});
+
+kc.init({
+    onLoad: 'login-required',
+    checkLoginIframe: true,
+    pkceMethod: 'S256'
+})
+
+
 const Home = () => {
     const [videoPaths, setVideoPaths] = useState<string[]>([]);
     
-    const kc = new Keycloak ({
-        url: 'http://localhost:8080',
-        realm: 'master',
-        clientId: 'real-client',
-    });
 
-    kc.init({
-        onLoad: 'login-required',
-        checkLoginIframe: true,
-        pkceMethod: 'S256'
-    })
-
-    function logout() {
-        kc.logout()
-    }
 
     useEffect(() => {
         const videoFiles: string[] = ['VideoA.mp4']; //VideoFile names
@@ -35,6 +34,7 @@ const Home = () => {
 
         setVideoPaths(repeatedVideoFiles.map(file => `/videos/${file}`));
     }, []);
+
 
     return (
         <div className="flex-grow overflow-y-auto">

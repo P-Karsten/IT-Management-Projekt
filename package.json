@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@vidstack/react": "^1.11.21",
+    "axios": "^1.7.2",
     "keycloak-js": "^24.0.4",
     "typescript": "^5.4.5"
   }
