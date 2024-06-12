@@ -25,6 +25,6 @@ if "x%JAVA%" == "x" (
   )
 )
 
-"%JAVA%" %KC_OPTS% -cp "%DIRNAME%\client\keycloak-admin-cli-24.0.4.jar" --add-opens=java.base/java.security=ALL-UNNAMED -Dkc.lib.dir="%DIRNAME%\client\lib" org.keycloak.client.admin.cli.KcAdmMain %*
+"%JAVA%" %KC_OPTS% -cp "%DIRNAME%\client\keycloak-admin-cli-25.0.0.jar" --add-opens=java.base/java.security=ALL-UNNAMED -Dkc.lib.dir="%DIRNAME%\client\lib" org.keycloak.client.admin.cli.KcAdmMain %*
 
 :END
