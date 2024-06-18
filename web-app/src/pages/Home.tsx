@@ -3,6 +3,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import VideoLoader from "../components/video/VideoLoader";
 import './home.css';
+import ReactDOM from 'react-dom';
+import App1 from '../App';
+import keycloak from './keycloak';
+import { ReactKeycloakProvider } from '@react-keycloak/web';
+
+
+
 
 const Home = ({ userInfo }) => {
   const [videoPaths, setVideoPaths] = useState<string[]>([]);
@@ -19,6 +26,20 @@ const Home = ({ userInfo }) => {
 
     setVideoPaths(repeatedVideoFiles.map(file => `/videos/${file}`));
   }, []);
+
+/*
+ReactDOM.render(
+  <ReactKeycloakProvider authClient={keycloak}>
+   <App />
+      </ReactKeycloakProvider>,
+  document.getElementById('root')
+);
+*/
+
+
+
+
+
 
   return (
     <div className="container-main">
@@ -58,5 +79,9 @@ const Home = ({ userInfo }) => {
     </div>
   );
 };
+
+
+
+
 
 export default Home;

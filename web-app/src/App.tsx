@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import router from '../routes/Router';
 import './App.css';
 
+import { useKeycloak } from '@react-keycloak/web';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
@@ -30,5 +32,30 @@ function App() {
     <RouterProvider router={routes} />
   );
 }
+
+
+
+const App1: React.FC = () => {
+  const { keycloak, initialized } = useKeycloak();
+
+  // Initialisierungsstatus überprüfen
+  if (!initialized) {
+    return console.log("app1 1re");
+  }
+
+  // Authentifizierungsstatus überprüfen und Inhalte anzeigen
+  return (
+    <div>
+      {keycloak.authenticated ? (
+        <div>
+          <p>Welcome {keycloak.tokenParsed?.preferred_username}!</p>
+          <button onClick={() => keycloak.logout()}>Logout</button>
+        </div>
+      ) : (
+        <button onClick={() => keycloak.login()}>Login</button>
+      )}
+    </div>
+  );
+};
 
 export default App;

@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
+
+
+import ReactDOM from 'react-dom';
+import App1 from '../App';
+import keycloak from './keycloak';
+import { ReactKeycloakProvider } from '@react-keycloak/web';
+
+
 const Login = ({ setIsAuthenticated, setUserInfo }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -11,12 +19,21 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
     e.preventDefault();
 
     const data = new URLSearchParams();
-    data.append('client_id', 'admin-rest-client');
-    data.append('client_secret', 'w6qIqNabg8nprhRz3aehThctcjp0tH5k');
+    data.append('client_id', 'real-client');
+    data.append('client_secret', 'N72WGYwOXapA6REUEztqnexkKs17P7SN');
     data.append('username', username);
     data.append('password', password);
     data.append('grant_type', 'password');
-
+    
+    
+/*ReactDOM.render(
+  <ReactKeycloakProvider authClient={keycloak}>
+   <App />
+      </ReactKeycloakProvider>,
+  document.getElementById('root')
+);*/
+    
+    
     try {
       const response = await fetch("http://localhost:8080/realms/master/protocol/openid-connect/token", {
         method: 'POST',
@@ -41,6 +58,15 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
       console.error('Login error', error);
     }
   };
+  
+  
+
+
+
+  
+  
+  
+  
 
   const fetchUserId = async (token) => {
     try {
@@ -132,5 +158,8 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
     </div>
   );
 };
+
+
+
 
 export default Login;

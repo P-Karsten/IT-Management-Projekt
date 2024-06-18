@@ -1,0 +1,11 @@
+{
+  "realm": "master",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "real-client",
+  "credentials": {
+    "secret": "N72WGYwOXapA6REUEztqnexkKs17P7SN"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": "ENFORCING"
+}
