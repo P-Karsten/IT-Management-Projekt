@@ -2,3 +2,8 @@
 body{
     background-color: rgb(30, 30, 30);
 }
+button1{
+    height: 800px;
+    width: 800px;
+    z-index: 50;
+}

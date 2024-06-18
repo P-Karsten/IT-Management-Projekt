@@ -27,19 +27,6 @@ const Home = ({ userInfo }) => {
     setVideoPaths(repeatedVideoFiles.map(file => `/videos/${file}`));
   }, []);
 
-/*
-ReactDOM.render(
-  <ReactKeycloakProvider authClient={keycloak}>
-   <App />
-      </ReactKeycloakProvider>,
-  document.getElementById('root')
-);
-*/
-
-
-
-
-
 
   return (
     <div className="container-main">
