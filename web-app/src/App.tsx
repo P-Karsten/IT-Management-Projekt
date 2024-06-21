@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { useKeycloak } from '@react-keycloak/web';
 import Login from './pages/Login';
 
-function App1() {
+function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   
@@ -40,7 +40,7 @@ function App1() {
 }
 
 
-function App() {
+function App1() {
   const { keycloak, initialized } = useKeycloak();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userInfo, setUserInfo] = useState(null);

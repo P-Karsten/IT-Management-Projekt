@@ -20,19 +20,12 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
 
     const data = new URLSearchParams();
     data.append('client_id', 'real-client');
-    data.append('client_secret', 'N72WGYwOXapA6REUEztqnexkKs17P7SN');
+    data.append('client_secret', 'zlaMF4ekGVzh75kccZl9nO2JQmuhjFrX');
     data.append('username', username);
     data.append('password', password);
     data.append('grant_type', 'password');
     
-    
-/*ReactDOM.render(
-  <ReactKeycloakProvider authClient={keycloak}>
-   <App />
-      </ReactKeycloakProvider>,
-  document.getElementById('root')
-);*/
-    
+  
     
     try {
       const response = await fetch("http://localhost:8080/realms/master/protocol/openid-connect/token", {
@@ -43,10 +36,11 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
         },
         body: data.toString()
       });
+      console.log(data.toString())
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Authenticated', result);
+        console.log('Authenticated', result); 
         localStorage.setItem('accessToken', result.access_token);
 
         fetchUserId(result.access_token);

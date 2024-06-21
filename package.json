@@ -1,11 +1,14 @@
 {
   "dependencies": {
     "@react-keycloak/web": "^3.4.0",
-    "@vidstack/react": "^1.11.21",
-    "@react-keycloak/web":"0.6.4",
+    "@vidstack/react": "^1.11.24",
     "axios": "^1.7.2",
-    "keycloak-js": "^24.0.4",
-    "typescript": "^5.4.5"
+    "keycloak-js": "^24.0.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "typescript": "^5.4.5",
+    "vite-react": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

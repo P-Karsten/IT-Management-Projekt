@@ -1,6 +1,6 @@
 #FileLock
-#Tue Jun 18 19:03:01 CEST 2024
-server=127.0.1.1\:43705
-hostName=loris-VirtualBox
+#Fri Jun 21 20:29:47 CEST 2024
+server=192.168.56.1\:56449
+hostName=Home
 method=file
-id=1902c4d4b1510c0a0360fcec9a2d191631e88db4b10
+id=1903c0fbb9051e0fef41e19727da047d5d7f1db121e
