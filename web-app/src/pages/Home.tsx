@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import VideoLoader from "../components/video/VideoLoader";
 import './home.css';
 import keycloak from './keycloak';
+import { useNavigate } from 'react-router-dom';
+import RevokeToken from './Test';
+
 
 const Home = () => {
   const [token, setToken] = useState<string | null>(null);
   const [videoPaths, setVideoPaths] = useState<string[]>([]);
   const [author, setAuthor] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken');
     setToken(storedToken);
@@ -39,6 +42,7 @@ const Home = () => {
           loadVideos();
         } else {
           console.log('Access denied');
+          
         }
       } catch (error) {
         console.error('Error checking access:', error);
@@ -94,8 +98,11 @@ const Home = () => {
               <h3>{videoPath}</h3>
             </div>
           ))}
+          
         </div>
+        
       </div>
+      <RevokeToken onClick= {() => navigate('/RevokeToken')}/>
     </div>
   );
 };

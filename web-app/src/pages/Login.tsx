@@ -5,6 +5,7 @@ import './login.css';
 
 
 const Login = ({ setIsAuthenticated, setUserInfo }) => {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Login = ({ setIsAuthenticated, setUserInfo }) => {
 
     const data = new URLSearchParams();
     data.append('client_id', 'real-client');
-    data.append('client_secret', '4h8j9GtggcdUyGYtQcFVlFNS7pEKMLaY');
+    data.append('client_secret', 'N72WGYwOXapA6REUEztqnexkKs17P7SN');
     data.append('username', username);
     data.append('password', password);
     data.append('grant_type', 'password');

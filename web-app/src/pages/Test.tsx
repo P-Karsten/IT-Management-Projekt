@@ -1,45 +1,46 @@
-import React, { useEffect, useState } from "react";
-import Keycloak from "keycloak-js";
+// RevokeToken.tsx
 
-const Home = () => {
-    const [keycloak, setKeycloak] = useState<Keycloak | null>(null);
-    const [authenticated, setAuthenticated] = useState<boolean>(false);
+import keycloak from './keycloak';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-    useEffect(() => {
-        const initKeycloak = async () => {
-            const keycloakInstance = new Keycloak({
-                url: 'http://localhost:8080',
-                realm: 'master',
-                clientId: 'real-client'
-            });
+const RevokeToken = () => {
 
-            try {
-                const authenticated = await keycloakInstance.init({ onLoad: 'login-required' });
-                setKeycloak(keycloakInstance);
-                setAuthenticated(authenticated);
-            } catch (error) {
-                console.error("Keycloak initialization failed", error);
-            }
-        };
+ const navigate = useNavigate();
+  const revokeToken = async () => {
+    const storedToken = localStorage.getItem('accessToken');
 
-        initKeycloak();
+    const clientId = 'real-client';  // Ersetzen Sie 'your-client-id' durch Ihre Client ID
+    const clientSecret = 'N72WGYwOXapA6REUEztqnexkKs17P7SN';  // Ersetzen Sie 'your-client-secret' durch Ihr Client Secret
 
-    }, []);
+    try {
+      const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/revoke', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`
+        },
+        body: new URLSearchParams({
+          'token': storedToken,
+          'token_type_hint': 'access_token'
+        })
+      });
 
-    if (!keycloak) {
-        return <div>Loading Keycloak...</div>;
+      if (response.ok) {
+        console.log('Access token revoked successfully');
+        navigate('/login');
+  	
+      } else {
+        console.log('Failed to revoke access token');
+      }
+    } catch (error) {
+      console.error('Error revoking token:', error);
     }
+  };
 
-    if (!authenticated) {
-        return <div>Redirecting to login...</div>;
-    }
-
-    return (
-        <div>
-            Hello
-            <button className="button-login" onClick={() => {keycloak.logout({redirectUri: 'http://localhost:5173/'})}}>Logout</button>
-        </div>
-    );
+  return (
+    <button onClick={revokeToken}>Logout</button>
+  );
 };
 
-export default Home;
+export default RevokeToken;

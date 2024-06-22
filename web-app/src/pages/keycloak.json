@@ -4,7 +4,7 @@
   "ssl-required": "external",
   "resource": "real-client",
   "credentials": {
-    "secret": "4h8j9GtggcdUyGYtQcFVlFNS7pEKMLaY"
+    "secret": "N72WGYwOXapA6REUEztqnexkKs17P7SN"
   },
   "confidential-port": 0,
   "policy-enforcer": "ENFORCING"
