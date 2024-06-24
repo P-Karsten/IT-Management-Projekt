@@ -21,9 +21,9 @@ const Home = () => {
     const checkAccess = async (token: string | null) => {
       if (!token) return;
 
-      const resourceAdmin = 'Videos0';
+      const resourceAdmin = 'Videos2';
       const resourcePremium = 'Videos1';
-      const resourceUser = 'Videos2';
+      const resourceUser = 'Videos0';
 
       //Admin Videos
       try {
@@ -102,6 +102,7 @@ const Home = () => {
             loadUserVideos();
           } else {
             console.log('User access denied');
+            navigate('/login');
             
           }
         } catch (error) {
@@ -110,9 +111,9 @@ const Home = () => {
   };
 
     const loadPremiumVideos = () => {
-      const videoFiles: string[] = ['VideoA.mp4', 'VideoB.mp4', 'VideoC.mp4']; // VideoFile names
+      const videoFiles: string[] = ['VideoB.mp4']; // VideoFile names
 
-      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 1 }, () => file));
+      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 3}, () => file));
 
       for (let i = repeatedVideoFiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -123,9 +124,9 @@ const Home = () => {
     };
 
     const loadUserVideos = () => {
-      const videoFiles: string[] = ['VideoA.mp4', 'VideoB.mp4', 'VideoC.mp4']; // VideoFile names
+      const videoFiles: string[] = [ 'VideoA.mp4']; // VideoFile names
 
-      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 1 }, () => file));
+      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 3 }, () => file));
 
       for (let i = repeatedVideoFiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -136,9 +137,9 @@ const Home = () => {
     };
 
     const loadAdminVideos = () => {
-      const videoFiles: string[] = ['VideoA.mp4', 'VideoB.mp4', 'VideoC.mp4']; // VideoFile names
+      const videoFiles: string[] = ['VideoC.mp4']; // VideoFile names
 
-      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 1 }, () => file));
+      const repeatedVideoFiles = videoFiles.flatMap(file => Array.from({ length: 3 }, () => file));
 
       for (let i = repeatedVideoFiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

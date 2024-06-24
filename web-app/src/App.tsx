@@ -24,6 +24,7 @@ function App() {
       setUserInfo(userInfo);
     } else {
       setIsAuthenticated(false);
+
     }
   };
 
