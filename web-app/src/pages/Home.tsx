@@ -19,8 +19,10 @@ const Home = () => {
     setToken(storedToken);
 
     const checkAccess = async (token: string | null) => {
+     
+      var   clientid = localStorage.getItem('clientid')!;
       if (!token) return;
-
+      
       const resourceAdmin = 'Videos2';
       const resourcePremium = 'Videos1';
       const resourceUser = 'Videos0';
@@ -35,7 +37,7 @@ const Home = () => {
           },
           body: new URLSearchParams({
             'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
-            'audience': 'real-client',
+            'audience': clientid,
             'permission': resourceAdmin
           })
         });
@@ -63,7 +65,7 @@ const Home = () => {
         },
         body: new URLSearchParams({
           'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
-          'audience': 'real-client',
+          'audience': clientid,
           'permission': resourcePremium
         })
       });
@@ -90,7 +92,7 @@ const Home = () => {
             },
             body: new URLSearchParams({
               'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
-              'audience': 'real-client',
+              'audience': clientid,
               'permission': resourceUser
             })
           });
@@ -155,6 +157,8 @@ const Home = () => {
   }, []);
 
   return (
+    
+     
     <div className="container-main">
       <div className="container-popular flexCol">
         <div className="Hline">ADMIN</div>
@@ -192,7 +196,9 @@ const Home = () => {
         
       </div>
       <RevokeToken onClick= {() => navigate('/RevokeToken')}/>
+      <h1>Authentifiziert mit {localStorage.getItem('clientid')}</h1>
     </div>
+    
   );
 };
 

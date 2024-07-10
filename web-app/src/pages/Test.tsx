@@ -8,10 +8,10 @@ const RevokeToken = () => {
 
  const navigate = useNavigate();
   const revokeToken = async () => {
-    const storedToken = localStorage.getItem('accessToken');
+    const storedToken = localStorage.getItem('accessToken')!;
 
-    const clientId = 'real-client';  // Ersetzen Sie 'your-client-id' durch Ihre Client ID
-    const clientSecret = 'N72WGYwOXapA6REUEztqnexkKs17P7SN';  // Ersetzen Sie 'your-client-secret' durch Ihr Client Secret
+    const clientId = localStorage.getItem('clientid')!;  
+    const clientSecret = localStorage.getItem('clientsecret');  
 
     try {
       const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/revoke', {
