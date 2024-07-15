@@ -19,60 +19,60 @@ const Home = () => {
     const storedToken = localStorage.getItem('accessToken');
     setToken(storedToken);
 
-    const checkAccess = async (token: string | null) => {
-      const clientid = localStorage.getItem('clientid')!;
-      if (!token) return;
-
-      const resourceAdmin = 'Videos2';
-
-      try {
-        const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${token}`
-          },
-          body: new URLSearchParams({
-            'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
-            'audience': clientid,
-            'permission': resourceAdmin
-          })
-        });
-
-        if (response.ok) {
-          setAuthor(true);
-          const data = await response.json();
-          console.log('Admin access granted:', data);
-          await getVideos(); // Ensure videos are fetched before loading them
-        } else {
-          console.log('Admin access denied');
-        }
-      } catch (error) {
-        console.error('Error checking admin access:', error);
-      }
-    };
-
-    checkAccess(storedToken);
+    if (storedToken) {
+      getVideos();
+    }
   }, []);
 
   useEffect(() => {
     if (allVideos.length > 0) {
-      loadVideos();
+      allVideos.forEach((videoData) => {
+        checkAccess(token, videoData.perm, videoData.video);
+      });
     }
-  }, [allVideos]);
+  }, [allVideos, token]);
 
-  const loadVideos = () => {
-    const paths = allVideos.map((data) => `http://localhost:5000/videos/${data.video}`);
-    setVideoPaths(paths);
+  const loadVideos = (videoPath: string) => {
+    setVideoPaths((prevPaths) => [...prevPaths, `http://localhost:5000/videos/${videoPath}`]);
   };
 
   const getVideos = async () => {
     try {
       const result = await axios.get('http://localhost:5000/get-videos');
-      console.log('getVideos:', result.data.data);
       setAllVideos(result.data.data);
     } catch (error) {
       console.error('Error fetching videos:', error);
+    }
+  };
+
+  const checkAccess = async (token: string | null, perm: string, videoPath: string) => {
+    const clientid = localStorage.getItem('clientid')!;
+    if (!token) return;
+
+    try {
+      const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${token}`
+        },
+        body: new URLSearchParams({
+          'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
+          'audience': clientid,
+          'permission': perm
+        })
+      });
+
+      if (response.ok) {
+        setAuthor(true);
+        const data = await response.json();
+        console.log("check acc vid path", videoPath);
+        loadVideos(videoPath);
+      } else {
+        console.log('Admin access denied');
+      }
+    } catch (error) {
+      console.error('Error checking admin access:', error);
     }
   };
 
