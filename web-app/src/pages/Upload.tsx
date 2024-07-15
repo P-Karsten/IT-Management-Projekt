@@ -44,17 +44,19 @@ function App() {
 
   return (
     <div>
-      <h1>Upload</h1>
       <form onSubmit={addVideo}>
-        <input type="text" required placeholder='Videotitel...' onChange={(e) => setTitle(e.target.value)} />
-        <select  name='sddsdsd' onChange={(e) => setPerm(e.target.value)}>
-          <option value=""> --Please choose an option-- </option>
-          <option value="Videos0">Alle</option>
-          <option value="Videos1">Premium</option>
-          <option value="Videos2">Admins</option>
-        </select>
-        <input type="file" required onChange={(e) => setFile(e.target.files[0])} />
-        <button type='submit'>Upload</button>
+        <div className='upload-container'>
+        <h1>Upload Video</h1>
+          <input type="text" required placeholder='Videotitel...' onChange={(e) => setTitle(e.target.value)} />
+          <select  name='sddsdsd' onChange={(e) => setPerm(e.target.value)}>
+            <option value=""> --Please choose an option-- </option>
+            <option value="Videos0">Alle</option>
+            <option value="Videos1">Premium</option>
+            <option value="Videos2">Admins</option>
+          </select>
+          <input type="file" required onChange={(e) => setFile(e.target.files[0])} />
+          <button type='submit'>Upload</button>
+        </div>
       </form>
     </div>
   )
