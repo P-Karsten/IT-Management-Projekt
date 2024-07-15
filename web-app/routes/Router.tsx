@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import Login from '../src/pages/Login';
 import Home from '../src/pages/Home';
+import Upload from '../src/pages/Upload';
 import RevokeToken from '../src/pages/Test';
 
 const router = (isAuthenticated, setIsAuthenticated, setUserInfo) => createBrowserRouter(
@@ -18,6 +19,10 @@ const router = (isAuthenticated, setIsAuthenticated, setUserInfo) => createBrows
       <Route
         path="login"
         element={<Login setIsAuthenticated={setIsAuthenticated} setUserInfo={setUserInfo} />}
+      />
+      <Route
+        path="upload"
+        element={<Upload />}
       />
       <Route
         path="RevokeToken"
