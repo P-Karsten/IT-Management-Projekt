@@ -7,11 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import RevokeToken from './Test';
 import axios from 'axios';
 
+interface VideoData {
+  video: string;
+  title: string;
+  perm: string;
+}
+
 const Home = () => {
   const [token, setToken] = useState<string | null>(null);
-  const [videoPaths, setVideoPaths] = useState<string[]>([]);
+  const [videoPaths, setVideoPaths] = useState<{ path: string, title: string, perm: string }[]>([]);
   const [author, setAuthor] = useState(false);
-  const [allVideos, setAllVideos] = useState<any[]>([]);
+  const [allVideos, setAllVideos] = useState<VideoData[]>([]);
   const [isAdmin, setIsAdmin] = useState(false); // State for admin access
 
   const navigate = useNavigate();
@@ -30,13 +36,13 @@ const Home = () => {
   useEffect(() => {
     if (allVideos.length > 0) {
       allVideos.forEach((videoData) => {
-        checkAccess(token, videoData.perm, videoData.video);
+        checkAccess(token, videoData.perm, videoData.video, videoData.title);
       });
     }
   }, [allVideos, token]);
 
-  const loadVideos = (videoPath: string) => {
-    setVideoPaths((prevPaths) => [...prevPaths, `http://localhost:5000/videos/${videoPath}`]);
+  const loadVideos = (videoPath: string, title: string, perm: string) => {
+    setVideoPaths((prevPaths) => [...prevPaths, { path: `http://localhost:5000/videos/${videoPath}`, title, perm }]);
   };
 
   const getVideos = async () => {
@@ -82,7 +88,7 @@ const Home = () => {
     }
   };
 
-  const checkAccess = async (token: string | null, perm: string, videoPath: string) => {
+  const checkAccess = async (token: string | null, perm: string, videoPath: string, title: string) => {
     const clientid = localStorage.getItem('clientid')!;
     if (!token) return;
 
@@ -103,8 +109,7 @@ const Home = () => {
       if (response.ok) {
         setAuthor(true);
         const data = await response.json();
-        console.log("check acc vid path", videoPath);
-        loadVideos(videoPath);
+        loadVideos(videoPath, title, perm);
       } else {
         console.log('Access denied');
       }
@@ -118,10 +123,11 @@ const Home = () => {
       <div className="container-popular flexCol">
         <div className="Hline">Videos</div>
         <div className="videos flexRow">
-          {videoPaths.map((videoPath, index) => (
+          {videoPaths.map((video, index) => (
             <div key={index} className="video">
-              <VideoLoader srcPath={videoPath} />
-              <h3>{videoPath}</h3>
+              <VideoLoader srcPath={video.path} />
+              <h3>{video.title}</h3>
+              <p>{video.perm}</p>
             </div>
           ))}
         </div>
