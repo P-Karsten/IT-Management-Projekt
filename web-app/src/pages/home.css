@@ -82,3 +82,10 @@ h3 {
   color: rgb(30, 30, 30);
   border-radius: 10px;
 }
+
+.container-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}

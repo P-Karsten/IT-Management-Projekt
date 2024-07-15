@@ -126,12 +126,15 @@ const Home = () => {
           ))}
         </div>
       </div>
-
-      {isAdmin && ( // Conditionally render the button if admin access is granted
+      
+      <div className="container-options">
+        {isAdmin && ( // Conditionally render the button if admin access is granted
         <button className="button-group" onClick={() => navigate('/Upload')}>Upload</button>
       )}
 
       <RevokeToken onClick={() => navigate('/RevokeToken')} />
+      </div>
+
       <h1>Authentifiziert mit {localStorage.getItem('clientid')}</h1>
     </div>
   );
