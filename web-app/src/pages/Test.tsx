@@ -39,7 +39,7 @@ const RevokeToken = () => {
   };
 
   return (
-    <button onClick={revokeToken}>Logout</button>
+    <button className='button-group' onClick={revokeToken}>Logout</button>
   );
 };
 

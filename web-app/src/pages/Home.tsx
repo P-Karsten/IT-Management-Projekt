@@ -12,8 +12,10 @@ const Home = () => {
   const [videoPaths, setVideoPaths] = useState<string[]>([]);
   const [author, setAuthor] = useState(false);
   const [allVideos, setAllVideos] = useState<any[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false); // State for admin access
 
   const navigate = useNavigate();
+  const adminAccess = 'Videos2';
 
   useEffect(() => {
     const storedToken = localStorage.getItem('accessToken');
@@ -21,6 +23,7 @@ const Home = () => {
 
     if (storedToken) {
       getVideos();
+      checkAdminAccess(storedToken, adminAccess); // Check admin access on mount
     }
   }, []);
 
@@ -42,6 +45,40 @@ const Home = () => {
       setAllVideos(result.data.data);
     } catch (error) {
       console.error('Error fetching videos:', error);
+    }
+  };
+
+  //Admin Access
+  async function checkAdminAccess(token: string | null, adminPerm: string) {
+    const clientid = localStorage.getItem('clientid')!;
+    if (!token) return;
+
+    try {
+      const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Bearer ${token}`
+        },
+        body: new URLSearchParams({
+          'grant_type': 'urn:ietf:params:oauth:grant-type:uma-ticket',
+          'audience': clientid,
+          'permission': adminPerm
+        })
+      });
+
+      if (response.ok) {
+        setAuthor(true);
+        const data = await response.json();
+        setIsAdmin(true); // Set admin access state to true
+        return true;
+      } else {
+        console.log('Admin access denied');
+        setIsAdmin(false); // Set admin access state to false
+        return false;
+      }
+    } catch (error) {
+      console.error('Error checking admin access:', error);
     }
   };
 
@@ -69,10 +106,10 @@ const Home = () => {
         console.log("check acc vid path", videoPath);
         loadVideos(videoPath);
       } else {
-        console.log('Admin access denied');
+        console.log('Access denied');
       }
     } catch (error) {
-      console.error('Error checking admin access:', error);
+      console.error('Error checking access:', error);
     }
   };
 
@@ -89,6 +126,10 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      {isAdmin && ( // Conditionally render the button if admin access is granted
+        <button className="button-group" onClick={() => navigate('/Upload')}>Upload</button>
+      )}
 
       <RevokeToken onClick={() => navigate('/RevokeToken')} />
       <h1>Authentifiziert mit {localStorage.getItem('clientid')}</h1>
