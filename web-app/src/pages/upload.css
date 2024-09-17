@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-
-*{
-    font-family: 'Roboto';
-    transition: all 0.3s;
-}
-
-body{
+/*body{
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -15,7 +9,7 @@ body{
     align-items: center;
     justify-content: center;
     background-color: rgba(27, 27, 27, 0.041);
-}
+}*/
 
 .upload-container{
     height: fit-content;
@@ -68,4 +62,9 @@ h1{
 
 .upload-container button:active{
     transform: scale(0.97);
+}
+
+.owner {
+    font-size: 16px;
+    color: white;
 }

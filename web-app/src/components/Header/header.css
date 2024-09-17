@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+}
+  
+.flex {
+    display: flex;
+    align-items: center;
+  }
+
+header {
+    position: sticky;
+    top: 0;
+    background-color: #1D2C37;
+    width: 100%;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  .navbar {
+    margin: auto;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navlist ul{
+    gap: 40px;
+    list-style: none;
+  }
+  
+  .navlist ul li a{
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    color: #E5A233;
+    font-weight: 600;
+  }

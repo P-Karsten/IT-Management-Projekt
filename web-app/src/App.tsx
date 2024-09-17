@@ -35,7 +35,6 @@ function App() {
   const routes = router(isAuthenticated, setIsAuthenticated, setUserInfo);
 
   return (
-    
         <RouterProvider router={routes} />
     
   );

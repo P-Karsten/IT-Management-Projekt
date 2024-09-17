@@ -1,0 +1,87 @@
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+img{
+    object-fit: cover;
+}
+
+.left-sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.left-sidebar .logo .main-icon{
+    width: 40px;
+    height: 40px;
+    color: #15333a;
+}
+
+.left-sidebar .logo a{
+    font-weight: 800;
+    color: #15333a;
+    font-size: 18px;
+}
+
+.left-sidebar .sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left-sidebar .sidebar .item,
+.left-sidebar .logout{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 7px 20px 7px 7px;
+    border-radius: 12px;
+}
+
+.left-sidebar .logout .icon{
+    color: rgb(207, 49, 49);
+}
+
+.icon{
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    width: 20px;
+    height: 20px;
+}
+
+.left-sidebar .sidebar .item h3,
+.left-sidebar .logout h3{
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.left-sidebar .sidebar .item:hover,
+.left-sidebar .logout:hover {
+    background-color: #fed24d77;
+}
+
+/* Animations */
+.left-sidebar .sidebar .item:active,
+.left-sidebar .logout:active {
+    transform: scale(0.95);
+}
+
+.left-sidebar .sidebar .item.active .icon {
+    background: #fed24d;
+}
+
+.left-sidebar .sidebar .item.active h3 {
+    color: #ffb700;
+}
+
+/* Change Color */
+
+.left-sidebar .sidebar .item .icon::after {
+    background-color: #ffb700;
+}

@@ -65,8 +65,9 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   const title = req.body.title;
   const fileName = req.file.filename;
   const perm = req.body.perm;
+  const owner = req.body.owner;
   try {
-    await VideoSchema.create({title: title, video: fileName, perm: perm});
+    await VideoSchema.create({title: title, video: fileName, perm: perm, owner: owner});
     res.send({ status: 'ok' });
     
   } catch (error) {

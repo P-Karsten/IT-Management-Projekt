@@ -8,14 +8,14 @@
 
 .player[data-view-type="video"] {
   aspect-ratio: 16 /9;
-  min-width: 350px;
-  max-width: 420px;
+  min-width: 250px;
+  max-width: 300px;
 }
 
 .player .vds-controls {
   height: 100%;
   width: 100%;
-  --transform: scale(0.5); /* Passt die Größe der Steuerelemente an */
+  transform: scale(1); /* Passt die Größe der Steuerelemente an */
 }
 
 .src-buttons {

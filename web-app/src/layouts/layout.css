@@ -1,0 +1,41 @@
+.layout-container{
+    display: flex;
+    height: 100vh;
+}
+
+.left-sidebar{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    transition: all 0.3 ease;
+    --background-color: aqua;
+    width: 200px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.header {
+    background-color: aquamarine;
+    height: 50px;
+    width: fit-content;
+    margin-left: 200px;
+}
+
+.sidebar{
+
+}
+
+.content{
+    margin-left: 200px;
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    --background-color: aquamarine;
+}

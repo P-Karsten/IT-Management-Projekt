@@ -4,6 +4,9 @@ import keycloak from './keycloak';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+
 const RevokeToken = () => {
 
  const navigate = useNavigate();
@@ -39,7 +42,10 @@ const RevokeToken = () => {
   };
 
   return (
-    <button className='button-group' onClick={revokeToken}>Logout</button>
+    <div className="logout" onClick={revokeToken}>
+      <FontAwesomeIcon className="icon" icon={faRightFromBracket} />
+      <h3>Logout</h3>
+    </div>
   );
 };
 

@@ -7,12 +7,17 @@ function App() {
   const [title, setTitle] = useState(null);
   const [file, setFile] = useState(null);
   const [perm, setPerm] = useState(null);
+  const [owner, setOwner] = useState<string | null>(null);
   const [allVideos, setAllVideos] = useState(null);
 
   const navigate = useNavigate();
 
 
   useEffect(() => {
+    const activeUser = localStorage.getItem('username');
+    if (activeUser) {
+      setOwner(activeUser);
+    }
     getVideos();
   }, []);
 
@@ -28,6 +33,7 @@ function App() {
     const formData = new FormData();
     formData.append('title', title!);
     formData.append('perm', perm!);
+    formData.append('owner', owner!);
     formData.append('file', file!);
     console.log(title, file, perm);
     const result = await axios.post(
@@ -50,11 +56,12 @@ function App() {
           <input type="text" required placeholder='Videotitel...' onChange={(e) => setTitle(e.target.value)} />
           <select  name='sddsdsd' onChange={(e) => setPerm(e.target.value)}>
             <option value=""> --Please choose an option-- </option>
-            <option value="Videos0">Alle</option>
-            <option value="Videos1">Premium</option>
-            <option value="Videos2">Admins</option>
+            <option value="free">Free</option>
+            <option value="premium">Premium</option>
+            <option value="privat">Admins</option>
           </select>
           <input type="file" required onChange={(e) => setFile(e.target.files[0])} />
+          <h3 className='owner'>User: {owner}</h3>
           <button type='submit'>Upload</button>
         </div>
       </form>

@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  transition: all 0.3s;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 25px;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.container-main {
+  height: fit-content;
+  width: fit-content;
+  background-color: rgb(136, 56, 56);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.container-videos {
+  background-color: rgb(30, 30, 30);
+  padding: 25px 50px;
+  box-shadow: 0 3px 30px rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+}
+
+.videos {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  padding: 10px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+}
+.Hline {
+  height: fit-content;
+  width: fit-content;
+  color: white;
+  background-color: #fff;
+  padding: 2px 20px 2px 20px;
+  font-size: 30px;
+  font-weight: 800;
+  color: rgb(30, 30, 30);
+  border-radius: 10px;
+}
+
+h3 {
+  color: #fff;
+  padding: 5px 0;
+}
+
+.button-group {
+  margin-top: 40px;
+  height: fit-content;
+  width: fit-content;
+  color: white;
+  background-color: #fff;
+  padding: 2px 20px 2px 20px;
+  font-size: 30px;
+  font-weight: 800;
+  color: rgb(30, 30, 30);
+  border-radius: 10px;
+}
+
+.container-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
